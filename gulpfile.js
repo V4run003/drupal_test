@@ -11,38 +11,38 @@ var pngquant = require('imagemin-pngquant');
 
 
 gulp.task('imagemin', function () {
-    return gulp.src('./wp-content/themes/olympos/images/*')
+    return gulp.src('./themes/custom/my_theme/images/*')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
         }))
-        .pipe(gulp.dest('./wp-content/themes/olympos/images'));
+        .pipe(gulp.dest('./themes/custom/my_theme/images'));
 });
 
 
 gulp.task('sass', function () {
-  gulp.src('./wp-content/themes/olympos/sass/**/*.scss')
+  gulp.src('./themes/custom/my_theme/sass/**/*.scss')
     .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./wp-content/themes/olympos'));
+    .pipe(gulp.dest('./themes/custom/my_theme/css'));
 });
 
 
 gulp.task('uglify', function() {
-  gulp.src('./wp-content/themes/olympos/lib/*.js')
-    .pipe(uglify('olympos.min.js'))
-    .pipe(gulp.dest('./wp-content/themes/olympos/js'))
+  gulp.src('./themes/custom/my_theme/lib/*.js')
+    .pipe(uglify('main.js'))
+    .pipe(gulp.dest('./themes/custom/my_theme/js'))
 });
 
 gulp.task('watch', function(){
     livereload.listen();
 
-    gulp.watch('./wp-content/themes/olympos/sass/**/*.scss', ['sass']);
-    gulp.watch('./wp-content/themes/olympos/lib/*.js', ['uglify']);
-    gulp.watch(['./wp-content/themes/olympos/style.css', './wp-content/themes/olympos/*.php', './wp-content/themes/olympos/js/*.js', './wp-content/themes/olympos/parts/**/*.php'], function (files){
+    gulp.watch('./themes/custom/my_theme/sass/**/*.scss', ['sass']);
+    gulp.watch('./themes/custom/my_theme/lib/*.js', ['uglify']);
+    gulp.watch(['./themes/custom/my_theme/style.css', './themes/custom/my_theme/*.php', './themes/custom/my_theme/js/*.js', './themes/custom/my_theme/parts/**/*.php'], function (files){
         livereload.changed(files)
     });
 });
