@@ -1,0 +1,8 @@
+name: my theme
+type: theme
+description: custom theme
+core_version_requirement: 9.x
+base theme: stable
+libraries: 
+  - my_theme/global-css
+  - my_theme/global-js
